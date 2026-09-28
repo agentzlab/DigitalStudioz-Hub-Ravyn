@@ -21,6 +21,7 @@
       img { max-width: 100%; }
     </style>
     <noscript><style>#preloader{display:none !important}</style></noscript>
+    <script>document.documentElement.classList.add("js");</script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -44,9 +45,79 @@
           <a href="#directory">Directory</a>
           <a href="#how">How to use</a>
         </nav>
-        <a class="btn btn-gold nav-cta" href="#directory">Open a tool</a>
+        <div class="nav-tools">
+          <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="directory-menu">
+            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="sg-dim" x="1" y="1" width="13" height="13" rx="1.2"/><rect class="sg-live" x="18" y="1" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="1" y="18" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="18" y="18" width="13" height="13" rx="1.2"/></svg>
+            <span class="vh">Open directory</span>
+          </button>
+          <a class="btn btn-gold nav-cta" href="#directory">Open a tool</a>
+        </div>
       </div>
     </header>
+
+    <div id="directory-menu" class="menu" hidden>
+      <button type="button" class="menu-backdrop" data-menu-close tabindex="-1" aria-label="Close directory"></button>
+      <div class="menu-panel" role="dialog" aria-modal="true" aria-labelledby="menu-title">
+        <div class="menu-head">
+          <h2 id="menu-title" class="menu-title">DIRECTORY SIGNAL</h2>
+          <button type="button" class="menu-close" data-menu-close>Close</button>
+        </div>
+        <div class="menu-acc">
+          <div class="acc">
+            <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-live">
+              <span>Live tools</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div id="acc-live" class="acc-panel" hidden>
+              <a href="https://muse.ai/s/skill-catalog-fxd6l9xwhxaxwxtj" target="_blank" rel="noopener noreferrer">Skill Catalog</a>
+              <a href="https://muse.ai/s/api-key-organizer-qxv6lbxy3qgtxg" target="_blank" rel="noopener noreferrer">API Key Organizer</a>
+              <a href="https://muse.ai/s/link-review-board-ec6lxgxhuxx4xf6" target="_blank" rel="noopener noreferrer">LinkLabz</a>
+            </div>
+          </div>
+          <div class="acc">
+            <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-dash">
+              <span>Dashboards</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div id="acc-dash" class="acc-panel" hidden>
+              <a href="https://muse.ai/s/my-subscriptions-kc6laag4qr0" target="_blank" rel="noopener noreferrer">AI Subscriptions Dashboard</a>
+              <a href="https://muse.ai/s/api-credit-dashboard-dy6mxeuysxv7xz" target="_blank" rel="noopener noreferrer">CreditLabz</a>
+              <a href="https://github.com/jonbeatz/Website-Templates/tree/main/.cursor/prompts" target="_blank" rel="noopener noreferrer">Prime Time Master Prompts</a>
+            </div>
+          </div>
+          <div class="acc">
+            <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-ref">
+              <span>Reference</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div id="acc-ref" class="acc-panel" hidden>
+              <a href="#card-skillpack">Personal Skill Pack</a>
+              <a href="#card-video">Video &amp; Image Lab</a>
+              <a href="#card-promptlab">PromptLab</a>
+              <a href="#card-websites">Website-Build System</a>
+              <a href="#card-3d">3D Lab</a>
+              <a href="#card-leaderboard">Model Leaderboard</a>
+            </div>
+          </div>
+          <div class="acc">
+            <button type="button" class="acc-btn" aria-expanded="false" aria-controls="acc-parked">
+              <span>Parked</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <div id="acc-parked" class="acc-panel" hidden>
+              <a href="https://docs.google.com/document/d/1RRw58E2vwq4HQqAh4ulCKMHlIvlE4rrxQgolImI6gVU/edit" target="_blank" rel="noopener noreferrer">Spitball Parking Lot</a>
+            </div>
+          </div>
+        </div>
+        <a class="menu-feature" href="https://muse.ai/s/skill-catalog-fxd6l9xwhxaxwxtj" target="_blank" rel="noopener noreferrer">
+          <img src="assets/card-skill.jpg" alt="" width="1152" height="864">
+          <span class="menu-feature-copy">
+            <span class="menu-feature-kicker">Featured</span>
+            <span class="menu-feature-title">Skill Catalog</span>
+          </span>
+        </a>
+      </div>
+    </div>
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
@@ -55,8 +126,8 @@
         </div>
         <div class="hero-scrim" aria-hidden="true"></div>
         <div class="wrap hero-copy">
-          <p class="eyebrow">
-            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="sg-dim" x="1" y="1" width="13" height="13" rx="1.2"/><rect class="sg-live" x="18" y="1" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="1" y="18" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="18" y="18" width="13" height="13" rx="1.2"/></svg>
+          <p class="hero-kicker">
+            <span class="signal-dot" aria-hidden="true"></span>
             <span class="signal-tag">signal live</span>
           </p>
           <h1 id="hero-title">The whole studio,<br><em>one signal.</em></h1>
@@ -66,14 +137,29 @@
             <a class="btn btn-line" href="#how">How to use</a>
           </div>
           <p class="statline">
-            <span><strong>13</strong> destinations</span>
-            <span><strong>4</strong> live</span>
-            <span><strong>1</strong> building</span>
-            <span><strong>7</strong> reference</span>
-            <span><strong>1</strong> parked</span>
+            <span><strong data-count="13">13</strong> destinations</span>
+            <span><strong data-count="4">4</strong> live</span>
+            <span><strong data-count="1">1</strong> building</span>
+            <span><strong data-count="7">7</strong> reference</span>
+            <span><strong data-count="1">1</strong> parked</span>
           </p>
+          <div class="deck">
+            <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect class="sg-dim" x="1" y="1" width="13" height="13" rx="1.2"/><rect class="sg-live" x="18" y="1" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="1" y="18" width="13" height="13" rx="1.2"/><rect class="sg-dim" x="18" y="18" width="13" height="13" rx="1.2"/></svg>
+            <div class="deck-readout">
+              <p><span>Command deck</span><strong>signal live</strong></p>
+              <p><span>Lane</span><strong>DS-HUB</strong></p>
+              <p><span>Board</span><strong>13 indexed</strong></p>
+            </div>
+          </div>
         </div>
       </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>Skill Catalog</span><span>API Key Organizer</span><span>LinkLabz</span><span>AI Subscriptions Dashboard</span><span>CreditLabz</span><span>Prime Time Master Prompts</span><span>Personal Skill Pack</span><span>Video &amp; Image Lab</span><span>PromptLab</span><span>Website-Build System</span><span>3D Lab</span><span>Model Leaderboard</span><span>Spitball Parking Lot</span>
+          <span>Skill Catalog</span><span>API Key Organizer</span><span>LinkLabz</span><span>AI Subscriptions Dashboard</span><span>CreditLabz</span><span>Prime Time Master Prompts</span><span>Personal Skill Pack</span><span>Video &amp; Image Lab</span><span>PromptLab</span><span>Website-Build System</span><span>3D Lab</span><span>Model Leaderboard</span><span>Spitball Parking Lot</span>
+        </div>
+      </div>
 
       <section class="section directory" id="directory" aria-labelledby="directory-title">
         <div class="wrap">
@@ -88,11 +174,11 @@
 
           <div class="toolbar">
             <div class="filters" role="group" aria-label="Filter by status">
-              <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
-              <button type="button" class="chip" data-filter="live" aria-pressed="false">Live</button>
-              <button type="button" class="chip" data-filter="building" aria-pressed="false">Building</button>
-              <button type="button" class="chip" data-filter="reference" aria-pressed="false">Reference</button>
-              <button type="button" class="chip" data-filter="parked" aria-pressed="false">Parked</button>
+              <button type="button" class="chip" data-filter="all" aria-pressed="true"><span class="chip-dot" aria-hidden="true"></span><span class="chip-label">All</span><span class="chip-count">13</span></button>
+              <button type="button" class="chip" data-filter="live" aria-pressed="false"><span class="chip-dot" aria-hidden="true"></span><span class="chip-label">Live</span><span class="chip-count">4</span></button>
+              <button type="button" class="chip" data-filter="building" aria-pressed="false"><span class="chip-dot" aria-hidden="true"></span><span class="chip-label">Building</span><span class="chip-count">1</span></button>
+              <button type="button" class="chip" data-filter="reference" aria-pressed="false"><span class="chip-dot" aria-hidden="true"></span><span class="chip-label">Reference</span><span class="chip-count">7</span></button>
+              <button type="button" class="chip" data-filter="parked" aria-pressed="false"><span class="chip-dot" aria-hidden="true"></span><span class="chip-label">Parked</span><span class="chip-count">1</span></button>
             </div>
             <label class="search">
               <span>Search</span>
@@ -108,7 +194,7 @@
             <div class="group">
               <h3 class="group-label">Live tools</h3>
               <div class="cards">
-                <article class="card" data-status="live">
+                <article class="card" id="card-skill" data-status="live">
                   <a class="card-link" href="https://muse.ai/s/skill-catalog-fxd6l9xwhxaxwxtj" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-skill.jpg" alt="Oak card catalog with open drawers of blank cards in warm lamplight." width="1152" height="864">
@@ -123,7 +209,7 @@
                   </a>
                 </article>
 
-                <article class="card" data-status="live">
+                <article class="card" id="card-keys" data-status="live">
                   <a class="card-link" href="https://muse.ai/s/api-key-organizer-qxv6lbxy3qgtxg" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-keys.jpg" alt="Antique brass keys arranged on charcoal felt." width="1152" height="864">
@@ -138,7 +224,7 @@
                   </a>
                 </article>
 
-                <article class="card" data-status="live">
+                <article class="card" id="card-linklabz" data-status="live">
                   <a class="card-link" href="https://muse.ai/s/link-review-board-ec6lxgxhuxx4xf6" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-linklabz.jpg" alt="Gold chain links and black threads pinned into a charcoal board." width="1152" height="864">
@@ -158,7 +244,7 @@
             <div class="group">
               <h3 class="group-label">Studio dashboards</h3>
               <div class="cards">
-                <article class="card" data-status="live">
+                <article class="card" id="card-subs" data-status="live">
                   <a class="card-link" href="https://muse.ai/s/my-subscriptions-kc6laag4qr0" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-subs.jpg" alt="Smoked-glass tiles standing in a row on a dark desk." width="1152" height="864">
@@ -173,7 +259,7 @@
                   </a>
                 </article>
 
-                <article class="card" data-status="building">
+                <article class="card" id="card-credit" data-status="building">
                   <a class="card-link" href="https://muse.ai/s/api-credit-dashboard-dy6mxeuysxv7xz" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-creditlabz.jpg" alt="Brass gauges and a balance scale on blackened steel." width="1152" height="864">
@@ -188,7 +274,7 @@
                   </a>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-prompts" data-status="reference">
                   <a class="card-link" href="https://github.com/jonbeatz/Website-Templates/tree/main/.cursor/prompts" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-prompts.jpg" alt="Blank cream cards under a brass desk lamp." width="1152" height="864">
@@ -208,7 +294,7 @@
             <div class="group">
               <h3 class="group-label">Reference</h3>
               <div class="cards">
-                <article class="card" data-status="reference">
+                <article class="card" id="card-skillpack" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-skillpack.jpg" alt="Charcoal felt, brass, ivory paper, black leather, and a gold tile." width="1152" height="864">
@@ -222,7 +308,7 @@
                   </div>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-video" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-video.jpg" alt="A curling strip of 35mm film under a tungsten bulb." width="1152" height="864">
@@ -236,7 +322,7 @@
                   </div>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-promptlab" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-promptlab.jpg" alt="Vellum sheets, brass clips, and an amber bottle on a black bench." width="1152" height="864">
@@ -250,7 +336,7 @@
                   </div>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-websites" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-websites.jpg" alt="A dark stone and brass model of stacked horizontal planes." width="1152" height="864">
@@ -264,7 +350,7 @@
                   </div>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-3d" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-3d.jpg" alt="A matte charcoal sculpture on a turntable with a gold rim light." width="1152" height="864">
@@ -278,7 +364,7 @@
                   </div>
                 </article>
 
-                <article class="card" data-status="reference">
+                <article class="card" id="card-leaderboard" data-status="reference">
                   <div class="card-face">
                     <figure class="card-media">
                       <img src="assets/card-leaderboard.jpg" alt="Charcoal stone steps with a gold spotlight on the top step." width="1152" height="864">
@@ -297,7 +383,7 @@
             <div class="group">
               <h3 class="group-label">Parked / ideas</h3>
               <div class="cards">
-                <article class="card" data-status="parked">
+                <article class="card" id="card-spitball" data-status="parked">
                   <a class="card-link" href="https://docs.google.com/document/d/1RRw58E2vwq4HQqAh4ulCKMHlIvlE4rrxQgolImI6gVU/edit" target="_blank" rel="noopener noreferrer">
                     <figure class="card-media">
                       <img src="assets/card-spitball.jpg" alt="Blank note cards pinned to dark cork beside a warm lamp." width="1152" height="864">

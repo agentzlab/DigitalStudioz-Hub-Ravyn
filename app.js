@@ -1,14 +1,98 @@
 (function () {
+  var root = document.documentElement;
   var preloader = document.getElementById("preloader");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function markReady() {
+    root.classList.add("is-ready");
+    countUp();
+  }
 
   function dismissPreloader() {
-    if (!preloader) return;
-    preloader.classList.add("is-done");
-    preloader.setAttribute("aria-hidden", "true");
+    if (preloader) {
+      preloader.classList.add("is-done");
+      preloader.setAttribute("aria-hidden", "true");
+      if (reduceMotion) markReady();
+      else window.setTimeout(markReady, 380);
+    } else {
+      markReady();
+    }
   }
 
   if (document.readyState === "complete") dismissPreloader();
   else window.addEventListener("load", dismissPreloader, { once: true });
+
+  function countUp() {
+    var nodes = document.querySelectorAll("[data-count]");
+    if (reduceMotion) return;
+    nodes.forEach(function (node) {
+      var target = parseInt(node.getAttribute("data-count"), 10);
+      if (isNaN(target)) return;
+      var start = performance.now();
+      var duration = 900;
+      node.textContent = "0";
+      function tick(now) {
+        var t = Math.min(1, (now - start) / duration);
+        var eased = 1 - Math.pow(1 - t, 3);
+        node.textContent = String(Math.round(target * eased));
+        if (t < 1) requestAnimationFrame(tick);
+        else node.textContent = String(target);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  var menu = document.getElementById("directory-menu");
+  var toggle = document.querySelector(".menu-toggle");
+  var closeButton = menu ? menu.querySelector(".menu-close") : null;
+
+  function openMenu() {
+    if (!menu || !toggle) return;
+    menu.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("is-menu-open");
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeMenu() {
+    if (!menu || !toggle || menu.hidden) return;
+    menu.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("is-menu-open");
+    toggle.focus();
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      if (menu && menu.hidden) openMenu();
+      else closeMenu();
+    });
+  }
+
+  if (menu) {
+    menu.addEventListener("click", function (event) {
+      var closer = event.target.closest("[data-menu-close]");
+      if (closer) {
+        closeMenu();
+        return;
+      }
+      var link = event.target.closest("a");
+      if (link && menu.contains(link)) closeMenu();
+    });
+
+    menu.querySelectorAll(".acc-btn").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var panel = document.getElementById(button.getAttribute("aria-controls"));
+        var open = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", open ? "false" : "true");
+        if (panel) panel.hidden = open;
+      });
+    });
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeMenu();
+  });
 
   var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
   var groups = Array.prototype.slice.call(document.querySelectorAll(".group"));
